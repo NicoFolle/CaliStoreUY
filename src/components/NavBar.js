@@ -1,35 +1,35 @@
-import React from 'react'
+import img from './calistoreuy_logo.jpg'
 
 export const NavBar = () => {
 
     return (
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                <div class="container-fluid">
-                    <a class="navbar-brand col-lg-3 col-sm-4 col-6" href="#">
-                        <img src="./images/calistoreuy_logo" alt="Logo CaliStoreUY" height="100%" width="100%" loading="lazy"/>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                <div className="container-fluid">
+                    <a className="navbar-brand col-lg-3 col-sm-4 col-6" href="#">
+                        <img src={img} alt="Logo CaliStoreUY" height="30%" width="30%" loading="lazy"/>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html" title="Página principal de Granate Studio">Home</a>
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href="" title="Página principal de CaliStoreUY">Inicio</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="htmls/projects.html" title="Galería de obras y proyectos realizados">Proyectos</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" title="Galería de equipamientos">Equipamiento</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="htmls/studio.html" title="Descripción e información sobre el estudio">Estudio</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" title="Galería de indumentaria">Indumentaria</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="htmls/team.html" title="Conforamción e información de los integrantes de Granate Studio">Equipo</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" title="Galería de accesorios">Accesorios</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="htmls/services.html" title="Servicios prestados por Granate Studio">Servicios</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" title="Formulario de contacto">Contacto</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="htmls/contact.html" title="Formulario de contacto">Contacto</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" title="Formulario de acceso">Login</a>
                             </li>
                         </ul>
                     </div>

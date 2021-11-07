@@ -1,15 +1,16 @@
 import './styles.css';
-import {NavBar} from './components/NavBar'
+import { NavBar } from './components/NavBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { logDOM } from '@testing-library/react';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
+    <header className="App-header">
 
-        <NavBar/>
+      <NavBar />
 
-      </header>
-    </div>
+    </header>
   );
 }
 

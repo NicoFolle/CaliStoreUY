@@ -1,16 +1,17 @@
-import './styles.css';
-import { NavBar } from './components/NavBar';
+
+import { NavBar } from './components/NavBar/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { logDOM } from '@testing-library/react';
+import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
 
 function App() {
 
   return (
-    <header className="App-header">
-
+    <>
       <NavBar />
 
-    </header>
+      <ItemListContainer greeting="Bienvenido a CaliStore Uruguay!"/>
+
+    </>
   );
 }
 

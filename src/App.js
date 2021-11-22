@@ -2,6 +2,7 @@
 import { NavBar } from './components/NavBar/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
+import { ItemCount } from './components/ItemCount/ItemCount';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
 
       <ItemListContainer greeting="Bienvenido a CaliStore Uruguay!"/>
 
+      <ItemCount/>
     </>
   );
 }

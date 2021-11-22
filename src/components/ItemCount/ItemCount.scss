@@ -1,0 +1,35 @@
+.contenedor {
+    margin-left: 40px;
+    width: 180px;
+    border: solid 1px black;
+    background-color: lightgray;
+
+    .itemName {
+        display: flex;
+
+        p {
+         font-size: 20px;
+         margin: auto;   
+        }
+        
+    }
+
+    .itemCount{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+       button {
+        background-color: black;
+        color: white;
+        width: 35px;
+    } 
+    }
+
+    button {
+        width: 180px;
+        margin-top: 10px;
+        background-color: black;
+        color: white;
+    }    
+}

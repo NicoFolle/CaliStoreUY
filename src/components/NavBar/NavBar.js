@@ -1,5 +1,6 @@
 import './NavBar.scss'
 import { CartWidget } from '../CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
 
 
 export const NavBar = () => {
@@ -7,19 +8,17 @@ export const NavBar = () => {
     return (
 
         <header className="header">
-            <img src="calistoreuy_logo.jpg" alt="Logo CaliStoreUY" height="30%" width="30%" loading="lazy" />
+            <Link to="/"><img src="calistoreuy_logo.jpg" alt="Logo CaliStoreUY" height="30%" width="30%" loading="lazy"/></Link>
 
             <nav>
                 <ul>
-                    <li>Inicio</li>
-                    <li>Equipamiento</li>
-                    <li>Indumentaria</li>
-                    <li>Accesorios</li>
-                    <li>Contacto</li>
+                    <li><Link to="productos/equipamiento">Equipamiento</Link></li>
+                    <li><Link to="productos/vestimenta">Vestimenta</Link></li>
+                    <li><Link to="productos/accesorios">Accesorios</Link></li>
                 </ul>
             </nav>
 
-            <CartWidget />
+            <Link to="cart"><CartWidget/></Link>
         </header>
     )
 }

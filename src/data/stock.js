@@ -6,6 +6,7 @@ export const stock = [
         name: "Barras paralelas en madera",
         desc: "Mini paralelas en madera, 25 cm de barra útil, encoladas y atornilladas. Base de goma anti deslizable de alto tránsito, con una capa de protección de lusol. Diámetro de barra 38 milímetros. Apto para todos los niveles",
         img: "barrasParalelasMadera.jpg",
+        category: 'equipamiento',
     },
     {
         id: 2,
@@ -13,6 +14,7 @@ export const stock = [
         name: "Barras paralelas en hierro",
         desc: "Barras Paralelas push up Portátiles Metal. Alto 95Cm próximo. Ideal para Calistenia.",
         img: "barrasParalelasHierro.jpg",
+        category: 'equipamiento',
     },
     {
         id: 3,
@@ -20,6 +22,7 @@ export const stock = [
         name: "Calleras",
         desc: "Calleras de cuero para crossfit, gimnasia, calistenia. Muñequera reforzada, buena calidad y utilizada por los mejores de Argentina!!",
         img: "calleras.jpg",
+        category: 'accesorios',
     },
     {
         id: 4,
@@ -27,6 +30,7 @@ export const stock = [
         name: "Magnesio",
         desc: "Magnesio liquido en rociador de 100ml. Para mejorar el agarre en calistenia, pesas , barras, gimnasia olímpica etc. Mejor y más limpio que los polvos comúnmente usados y rinde más no hay desperdicio.",
         img: "magnesioLiquido.jpg",
+        category: 'accesorios',
     },
     {
         id: 5,
@@ -34,6 +38,7 @@ export const stock = [
         name: "Barra dominadas",
         desc: "Barra de dominadas extra grande. Muy fuertes, desarmables, lo mejor relación calidad precio!!",
         img: "barraDominadas.jpg",
+        category: 'equipamiento',
     },
     {
         id: 6,
@@ -41,5 +46,6 @@ export const stock = [
         name: "Pull up balls",
         desc: "Las esferas de madera Pull Up Balls están diseñadas para fortalecer el agarre y la fuerza en antebrazos. Son muy versátiles a la hora de adaptarlas a cualquier nivel de entrenamiento. Principalmente desarrolladas para: escalada / calistenia / street workout .",
         img: "pullUpBalls.jpg",
+        category: 'equipamiento',
     },
 ]

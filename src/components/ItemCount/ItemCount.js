@@ -1,34 +1,29 @@
 import { useState } from "react"
-import './ItemCount.scss'
 
 
-export const ItemCount = () => {
+export const ItemCount = ( {max, cantidad, setCantidad, onAdd} ) => {
 
-    const [clicks,setClicks] = useState(0)
-
-    const handleClicksPlus = () => {
-        setClicks(clicks + 1)
+    const handleRestar = () => {
+        cantidad > 0 && setCantidad(cantidad - 1)
     }
 
-    const handleClicksMinus = () => {
-        setClicks(clicks - 1)
+    const handleSumar = () => {
+        cantidad < max && setCantidad(cantidad + 1)
     }
 
     return (
-        <div className="contenedor">
-            <div className="itemName">
-                <p>Item</p>
-            </div>
-            <div className="itemCount">
-            <button onClick={handleClicksPlus}> + </button> 
-            {clicks}
-            <button onClick={handleClicksMinus}> - </button>    
-            </div>
-            <div>
-                <button>Agregar a carrito</button>
-            </div>
-            
-
-        </div>
+        <div className="my-3">
+            <button className="btn btn-dark" onClick={handleRestar}>
+                -
+            </button>
+            <span className="mx-3">{cantidad}</span>
+            <button className="btn btn-dark" onClick={handleSumar}>
+                +
+            </button>
+            <br/>
+            <button className="btn btn-dark my-2" onClick={onAdd}>
+                Agregar al carrito
+            </button>
+        </div>            
     )
 }

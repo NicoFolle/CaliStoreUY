@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Card, Button } from "react-bootstrap"
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../context/CartContext'
 import { ItemCount } from '../ItemCount/ItemCount'
 
 export const ItemDetail = ({id, name, img, desc, price, category, stock}) => {
 
+  const {agregarAlCarrito, isInCart} = useContext(CartContext)
+
     const navigate = useNavigate()
+
     const [cantidad,setCantidad] = useState(0)
-    const [agregado,setAgregado] = useState(false)
 
     const handleVolver = () => {
       navigate(-1)
@@ -19,7 +22,15 @@ export const ItemDetail = ({id, name, img, desc, price, category, stock}) => {
     }
 
     const handleAgregar = () => {
-      if (cantidad > 0) {setAgregado(true)}
+      if (cantidad > 0) {
+        agregarAlCarrito({
+          id,
+          img,
+          name,
+          price,
+          cantidad
+        })
+      }
     }
 
 
@@ -33,7 +44,7 @@ export const ItemDetail = ({id, name, img, desc, price, category, stock}) => {
                   <Card.Text>{category}</Card.Text>
 
                   {
-                    !agregado
+                    !isInCart(id)
                     ?   <ItemCount 
                             max={stock} 
                             cantidad={cantidad} 

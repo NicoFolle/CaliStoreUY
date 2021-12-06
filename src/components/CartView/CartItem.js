@@ -8,7 +8,7 @@ export const CartItem = ({img, name, price, cantidad, id}) => {
 
     return (
         <div className="d-inline-flex p-2 justify-content-between align-items-center w-75">
-            <img src={img} height="10%" width="10%" />
+            <img src={img} height="10%" width="10%" alt={name} />
             <h4>{name}</h4>
             <p>Precio: $ {price}</p>
             <p>Cantidad: {cantidad}</p>

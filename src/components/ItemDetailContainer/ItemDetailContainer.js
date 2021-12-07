@@ -1,7 +1,8 @@
+import { doc, getDoc } from 'firebase/firestore/lite'
 import React from 'react'
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router'
-import { getItem } from "../../helpers/getItem"
+import { db } from '../../firebase/config'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
 import { Loader } from '../Loader/Loader'
 
@@ -16,9 +17,13 @@ export const ItemDetailContainer = () => {
 
         setLoading(true)
 
-        getItem()
-            .then( resp => {
-                setItem(resp.find(prod => prod.id === Number(itemId)))
+        const docRef = doc(db, 'productos', itemId)
+        getDoc(docRef)
+            .then((doc) => {
+                setItem({
+                    id: doc.id,
+                    ...doc.data()
+                })
             })
             .finally( () => {
                 setLoading(false)

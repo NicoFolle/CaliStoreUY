@@ -22,7 +22,7 @@ export const stock = [
         id: 3,
         price: 1200,
         name: "Calleras",
-        desc: "Calleras de cuero para crossfit, gimnasia, calistenia. Muñequera reforzada, buena calidad y utilizada por los mejores de Argentina!!",
+        desc: "Calleras de cuero para crossfit, gimnasia, calistenia. Muñequera reforzada, buena calidad y utilizada por los mejores de Uruguay!!",
         img: "calleras.jpg",
         category: 'accesorios',
         stock: 10,

@@ -24,4 +24,4 @@ También se introdujeron otras como: Firebase
                                     React-context-api
 
 ### Agradecimientos.
-Quisiera agradecer a CoderHouse y en especial al docente Conrado Lanusse por sus clases y la gran capacidad para transimitir conocimientos y conceptos claros, y también a mi tutora Ana Sánchez por su ayuda durante todo el transcurso del curso.
+Quisiera agradecer a CoderHouse y en especial al docente Conrado Lanusse por sus clases y la gran capacidad para transimitir conocimientos y conceptos claros, y también a mi tutora Ana Sánchez por su ayuda durante todo el transcurso del curso, ya que sin ellos no podría haber logrado éste proyecto.

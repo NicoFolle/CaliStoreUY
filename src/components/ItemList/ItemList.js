@@ -9,7 +9,7 @@ export const ItemList = ({productos}) => {
         <Container className="my-5">
             <h2>Productos</h2>
             <hr/>
-            <Row>
+            <Row className='d-flex justify-content-center'>
             {productos.map((prod) => <Item key={prod.id} {...prod}/>)}
             </Row>
         </Container>

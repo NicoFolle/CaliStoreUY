@@ -31,7 +31,7 @@ export const ItemDetailContainer = () => {
     }, [itemId])
     
     return (
-        <div className="container my-5">
+        <div className="container my-5 d-flex justify-content-center">
             {
                 loading
                     ? <Loader/>

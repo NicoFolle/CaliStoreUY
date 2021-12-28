@@ -1,86 +1,37 @@
-import { addDoc, collection, Timestamp, writeBatch, query, where, documentId, getDocs } from 'firebase/firestore/lite'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Navigate } from 'react-router'
-import Swal from 'sweetalert2'
 import { CartContext } from '../../context/CartContext'
-import { db } from '../../firebase/config'
+import { generarOrden } from '../../firebase/generarOrden'
 import { validarDatos } from '../../helpers/validarDatos'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+
+const schema = Yup.object().shape({
+    nombre: Yup.string()
+        .required('Campo requerido')
+        .min(4, 'Demasiado corto')
+        .max(15, 'Demasiado largo'),
+    apellido: Yup.string()
+        .required('Campo requerido')
+        .min(4, 'Demasiado corto')
+        .max(15, 'Demasiado largo'),
+    email: Yup.string()
+        .required('Campo requerido')
+        .email('email inválido'),
+    dirección: Yup.string()
+        .required('Calle, nº de puerta, apto, esquina'),
+})
 
 export const Checkout = () => {
 
     const { carrito, totalCosto, vaciarCarrito } = useContext(CartContext)
 
-    const [values, setValues] = useState({
+    const initialValues = {
         nombre: '',
         apellido: '',
         email: '',
         dirección: '',
-    })
-
-    const handleInputChange = (e) => {
-
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value
-        })
     }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        if (!validarDatos(values)) { return }
-
-        const orden = {
-            buyer: { ...values },
-            items: carrito,
-            total: totalCosto(),
-            date: Timestamp.fromDate(new Date())
-        }
-
-        const batch = writeBatch(db)
-
-        const orderRef = collection(db, "orders")
-        const productosRef = collection(db, "productos")
-        const q = query(productosRef, where(documentId(), 'in', carrito.map(el => el.id)))
-
-        const outOfStock = []
-
-        const productos = await getDocs(q)
-
-        productos.docs.forEach((doc) => {
-            const itemToUpdate = carrito.find((prod) => prod.id === doc.id)
-
-            if (doc.data().stock >= itemToUpdate.cantidad) {
-                batch.update(doc.ref, {
-                    stock: doc.data().stock - itemToUpdate.cantidad
-                })
-            } else {
-                outOfStock.push(itemToUpdate)
-            }
-        })
-
-        if (outOfStock.length === 0) {
-            addDoc(orderRef, orden)
-                .then((resp) => {
-                    batch.commit()
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Compra realizada',
-                        text: `Orden: ${resp.id}`
-                    })
-                    vaciarCarrito()
-                })
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Producto sin stock',
-                text: outOfStock.map(el => el.name).join(', ')
-            })
-        }
-
-
-    }
-
 
     return (
 
@@ -92,48 +43,59 @@ export const Checkout = () => {
                     <h3>Checkout</h3>
                     <hr />
 
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            onChange={handleInputChange}
-                            name="nombre"
-                            value={values.nombre}
-                            className="form-control my-2"
-                            type="text"
-                            placeholder="nombre"
-                        />
-                        {values.nombre.lenght < 4 && <small>Nombre inválido</small>}
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={schema}
+                        onSubmit={(values) => {
+                            if (!validarDatos(values)) { return }
+                            generarOrden(values, carrito, totalCosto, vaciarCarrito)
+                        }}
+                    >
+                        {(formik) => (
+                            <form onSubmit={formik.handleSubmit}>
+                                <input
+                                    onChange={formik.handleChange}
+                                    name="nombre"
+                                    value={formik.values.nombre}
+                                    className="form-control my-2"
+                                    type="text"
+                                    placeholder="nombre"
+                                />
+                                {formik.errors.nombre && <small>{formik.errors.nombre}</small>}
 
-                        <input
-                            onChange={handleInputChange}
-                            name="apellido"
-                            value={values.apellido}
-                            className="form-control my-2"
-                            type="text"
-                            placeholder="apellido"
-                        />
-                        {values.apellido.lenght < 4 && <small>Apellido inválido</small>}
+                                <input
+                                    onChange={formik.handleChange}
+                                    name="apellido"
+                                    value={formik.values.apellido}
+                                    className="form-control my-2"
+                                    type="text"
+                                    placeholder="apellido"
+                                />
+                                {formik.errors.apellido && <small>{formik.errors.apellido}</small>}
 
-                        <input
-                            onChange={handleInputChange}
-                            name="email"
-                            value={values.email}
-                            className="form-control my-2"
-                            type="text"
-                            placeholder="email"
-                        />
-                        {values.email.lenght < 4 && <small>Email inválido</small>}
+                                <input
+                                    onChange={formik.handleChange}
+                                    name="email"
+                                    value={formik.values.email}
+                                    className="form-control my-2"
+                                    type="text"
+                                    placeholder="email"
+                                />
+                                {formik.errors.email && <small>{formik.errors.email}</small>}
 
-                        <input
-                            onChange={handleInputChange}
-                            name="dirección"
-                            value={values.dirección}
-                            className="form-control my-2"
-                            type="text"
-                            placeholder="dirección"
-                        />
-                        {values.dirección.lenght < 4 && <small>Nombre inválido</small>}
-                        <button type="submit" className="btn btn-dark">Enviar</button>
-                    </form>
+                                <input
+                                    onChange={formik.handleChange}
+                                    name="dirección"
+                                    value={formik.values.dirección}
+                                    className="form-control my-2"
+                                    type="text"
+                                    placeholder="dirección"
+                                />
+                                {formik.errors.dirección && <small>{formik.errors.dirección}</small>}
+                                <button type="submit" className="btn btn-dark">Enviar</button>
+                            </form>
+                        )}
+                    </Formik>
                 </div>
             }
         </>
